@@ -1,4 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-echo "Hello Gitpod"
-echo "Here is my .bash_aliases dotfile"
+TMPDIR=$(mktemp -d)
+
+CURRENT=$PWD
+
+cd $TMPDIR
+
+for script in ~/.dotfiles/scripts/*; do
+  bash "$script"
+done
+
+cd $CURRENT
+
+rm -rf $TMPDIR
